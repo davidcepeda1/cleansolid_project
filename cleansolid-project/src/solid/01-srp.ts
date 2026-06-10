@@ -3,9 +3,7 @@ interface User {
     name: string;
 }
 
-// Esta clase viola el Principio de Responsabilidad Única (SRP)
-class UserBloc {
-
+class UserService {
     loadUser( id: number ) {
         // Simula la carga de un usuario
         console.log('Cargando usuario con id:', id);
@@ -15,6 +13,10 @@ class UserBloc {
         // Simula el guardado en base de datos
         console.log('Guardando en base de datos:', user );
     }
+}
+
+// Esta clase viola el Principio de Responsabilidad Única (SRP)
+class UserBloc {
 
     notifyUser() {
         // Simula el envío de notificaciones
@@ -30,10 +32,11 @@ class SubscriptionBloc {
     }
 }
 
-const userBloc = new UserBloc();
+const userService      = new UserService();
+const userBloc         = new UserBloc();
 const subscriptionBloc = new SubscriptionBloc();
 
-userBloc.loadUser(10);
-userBloc.saveUser({ id: 10, name: 'Fernando' });
+userService.loadUser(10);
+userService.saveUser({ id: 10, name: 'Fernando' });
 userBloc.notifyUser();
 subscriptionBloc.onAddSubscription(1234);

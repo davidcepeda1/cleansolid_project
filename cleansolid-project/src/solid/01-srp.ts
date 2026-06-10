@@ -4,7 +4,7 @@ interface User {
 }
 
 class UserService {
-    loadUser( id: number ) {
+    getUser( id: number ) {
         console.log('Cargando usuario con id:', id);
     }
 
@@ -22,19 +22,15 @@ class Mailer {
     }
 }
 
-// Esta clase viola el Principio de Responsabilidad Única (SRP)
 class UserBloc {
 
-    private userService: UserService;
-    private mailer: Mailer;
-
-    constructor( userService: UserService, mailer: Mailer ) {
-        this.userService = userService;
-        this.mailer = mailer;
-    }
+    constructor(
+        private userService: UserService,
+        private mailer: Mailer
+    ) {}
 
     loadUser( id: number ) {
-        this.userService.loadUser(id);
+        this.userService.getUser(id);
     }
 
     saveUser( user: User ) {
